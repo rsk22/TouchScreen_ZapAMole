@@ -34,3 +34,15 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+*.d
+*.o
+*.eep
+*.hex
+*.xml
+*.h
+*.cppproj
+*.a
+*.atsuo
+*.atsln
+*.elf

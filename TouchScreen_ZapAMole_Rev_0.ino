@@ -86,6 +86,7 @@ int highScore = 0;
 void setup() 
 {
   Tft.init();          // Initializes the TFT library
+  Serial.begin(9600);
   screenSetup();
 }
 
@@ -106,7 +107,7 @@ void screenSetup()
   Rectangle timeBlock(timeBlockCoord[0], timeBlockCoord[2], widthTextBlock, heightTextBlock);
   startButton.setValues(startButtonCoord[0], resetButtonCoord[2], widthStart, heightStart);
   resetButton.setValues(resetButtonCoord[0], resetButtonCoord[2], widthReset, heightReset);
-  
+
   // Set the text for the timeblock and score block
   TouchScreenString timeText("TIME", 45, 18, font, WHITE);
   TouchScreenString scoreText("SCORE", 158, 18, font, WHITE);
@@ -120,9 +121,9 @@ void screenSetup()
   
   // Draws the time, score and reset blocks
   timeBlock.draw();
-  scoreBlock.draw();
   startButton.draw();
   resetButton.draw();
+  scoreBlock.draw();
    
   // Draws the text for the blocks
   timeText.drawText();
@@ -185,11 +186,11 @@ void gameSetup()
       userButton = getButton();
       // If the user input = randomly chosen button 
       if (userButton == newButton) {
-        // Display the score
-        scoreDisplay(score);
         // Increment the score
         score++;
-         // Un-highlight the chosen button
+        // Display the score
+        scoreDisplay(score);
+        // Un-highlight the chosen button
         button[newButton].setFillColor(BLACK);
         button[newButton].fill();
         button[newButton].draw();
@@ -260,7 +261,7 @@ int getButton()
 void resetGame() 
 {
   resetButton.buttonDisplay();
-  resetText.textButtonDisplay();
+  resetText.drawText();
   screenSetup();
 }
 
@@ -268,7 +269,7 @@ void resetGame()
 void startGame() 
 {
   startButton.buttonDisplay();
-  startText.textButtonDisplay();
+  startText.drawText();
 }
 
 // Begins the countdown
