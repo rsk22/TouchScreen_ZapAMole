@@ -86,7 +86,7 @@ int highScore = 0;
 void setup() 
 {
   Tft.init();          // Initializes the TFT library
-  Serial.begin(9600);
+  randomSeed(analogRead(0)); // Used for randomizing the button selections
   screenSetup();
 }
 
@@ -166,12 +166,8 @@ void gameSetup()
   // Display the score
   scoreDisplay(score);
   
-  // Provide a random seed for the button selection
-  randomSeed(analogRead(0));
-  
   // Loop until timer = 0 or user enters RESET
   while (gameTime != 0 && userButton != 200) {  
-    
     // Choose a random button
     newButton = chooseButton(oldButton, newButton); 
     // Store the previous randomly chosen button
