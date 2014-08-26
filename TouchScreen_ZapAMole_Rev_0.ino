@@ -169,7 +169,7 @@ void gameSetup()
   // Loop until timer = 0 or user enters RESET
   while (gameTime != 0 && userButton != 200) {  
     // Choose a random button
-    newButton = chooseButton(oldButton, newButton); 
+    newButton = chooseRandomButton(oldButton, newButton); 
     // Store the previous randomly chosen button
     oldButton = newButton; 
     // Highlight the randomly chosen button
@@ -191,7 +191,7 @@ void gameSetup()
         button[newButton].fill();
         button[newButton].draw();
         // Choose a random button
-        newButton = chooseButton(oldButton, newButton); 
+        newButton = chooseRandomButton(oldButton, newButton); 
         // Store the previous randomly chosen button
         oldButton = newButton; 
         // Highlight the randomly chosen button
@@ -324,8 +324,8 @@ void scoreDisplay(int score)
   Tft.drawString(cstr, 158, 35, 2, WHITE);
 }
 
-// Chooses a random button to highlight
-int chooseButton(int oldButton, int newButton) 
+// Chooses a random button to highlight.  Ensures the oldButton is not reused.
+int chooseRandomButton(int oldButton, int newButton) 
 {
   while (oldButton == newButton) 
     newButton = random(0, 16);   
